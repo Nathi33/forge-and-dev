@@ -7,6 +7,8 @@
 /public/bundles/
 /var/
 /vendor/
+/node_modules/
+/.vite/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
