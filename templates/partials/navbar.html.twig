@@ -1,17 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom py-3 fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="{{ path('app_home') }}">Forge & Dev</a>
+    <a class="navbar-brand text-bronze fw-bold" href="{{ path('app_home') }}">
+      Forge & Dev
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" href="{{ path('app_home') }}">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'prestation' %}active{% endif %}" href="{{ path('prestation') }}">Prestations</a></li>
-        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'realisation' %}active{% endif %}" href="{{ path('realisation') }}">Réalisations</a></li>
-        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'a_propos' %}active{% endif %}" href="{{ path('a_propos') }}">À propos</a></li>
-        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'tarifs' %}active{% endif %}" href="{{ path('tarifs') }}">Tarifs</a></li>
-        <li class="nav-item"><a class="nav-link {% if app.request.attributes.get('_route') == 'contact' %}active{% endif %}" href="{{ path('contact') }}">Contact</a></li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" href="{{ path('app_home') }}">
+            Accueil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'prestation' %}active{% endif %}" href="{{ path('prestation') }}">
+            Prestations
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'realisation' %}active{% endif %}" href="{{ path('realisation') }}">
+            Réalisations
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'a_propos' %}active{% endif %}" href="{{ path('a_propos') }}">
+            À propos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'tarifs' %}active{% endif %}" href="{{ path('tarifs') }}">
+            Tarifs
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'contact' %}active{% endif %}" href="{{ path('contact') }}">
+            Contact
+          </a>
+        </li>
       </ul>
     </div>
   </div>
