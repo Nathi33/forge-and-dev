@@ -1,11 +1,35 @@
-import './stimulus_bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        console.log("Elements to animate:", elements);
+
+        if (!elements.length) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            elements.forEach(el => el.classList.add('is-visible'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        elements.forEach(el => observer.observe(el));
+    }, 100);
+});
+
+
+
+

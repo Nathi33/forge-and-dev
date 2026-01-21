@@ -1,3 +1,407 @@
+/* =====================================================
+   VARIABLES DE CHARTE
+===================================================== */
+:root {
+    --bg-dark: #121212;
+    --bg-dark-soft: #181818;
+
+    --bronze: #c48a3a;
+    --bronze-light: #e0b060;
+
+    --steel: #b5b5b5;
+    --steel-dark: #7d7d7d;
+
+    --text-light: #f5f5f5;
+    --text-muted: #cfcfcf;
+
+    --accent: var(--bronze);
+}
+
+/* =====================================================
+   BASE GLOBALE
+===================================================== */
+main {
+    overflow: visible;
+    
+}
+
 body {
-    background-color: skyblue;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    line-height: 1.7;
+    padding-top: 5rem;
+}
+
+a {
+    color: var(--bronze);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--bronze-light);
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+.navbar {
+    background-color: #0d0d0d;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--bronze);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--text-light);
+}
+
+.navbar-dark .navbar-brand {
+    color: var(--bronze);
+}
+
+/* =====================================================
+   SECTIONS & TRANSITIONS
+===================================================== */
+.section-metal {
+    position: relative;
+    border-bottom: 2px solid rgba(196, 138, 58, 0.5);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.section-metal::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 18, 18, 0),
+        var(--bg-dark)
+    );
+    pointer-events: none;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero-logo {
+    max-width: 500px;
+    animation: fadeZoom 1.2s ease-out forwards;
+}
+
+.hero-title {
+    opacity: 0;
+    animation: slideUp 1s ease-out 0.3s forwards;
+}
+
+.hero-text {
+    opacity: 0;
+    animation: slideUp 1s ease-out 0.6s forwards;
+}
+
+.hero-cta {
+    opacity: 0;
+    animation: slideUp 1s ease-out 0.9s forwards;
+}
+
+/* =====================================================
+   TEXTES & TITRES
+===================================================== */
+.text-bronze {
+    color: var(--bronze);
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* =====================================================
+   BOUTONS
+===================================================== */
+.btn-primary {
+    background-color: var(--bronze);
+    border-color: var(--bronze);
+    color: #121212;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--bronze-light);
+    border-color: var(--bronze-light);
+    color: #121212;
+}
+
+.btn-outline-primary {
+    color: var(--bronze);
+    border-color: var(--bronze);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--bronze);
+    color: #121212;
+}
+
+/* =====================================================
+   CARDS PRESTATIONS
+===================================================== */
+.card {
+    background-color: var(--bg-dark-soft);
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at top left,
+        rgba(196, 138, 58, 0.15),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+.card-title {
+    margin-top: 0.5rem;
+}
+
+.card-text {
+    color: var(--text-muted);
+}
+
+/* =====================================================
+   CAROUSEL ACTUALITÉS
+===================================================== */
+.carousel-item {
+    min-height: 80px;
+}
+
+.carousel-item > div {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+/* =====================================================
+   IMAGES & GALERIE
+===================================================== */
+img {
+    max-width: 100%;
+}
+
+img.rounded {
+    border-radius: 0.75rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+}
+
+.realisation-link {
+    display: block;
+    overflow: hidden;
+    border-radius: 0.75rem;
+}
+
+.realisation-link:hover .realisation-img {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+.realisation-img {
+    display: block;
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    filter: contrast(1.05) brightness(0.95);
+}
+
+/* =====================================================
+   CTA FINAL
+===================================================== */
+#cta {
+    background: linear-gradient(
+        to top,
+        #0e0e0e,
+        var(--bg-dark)
+    );
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.footer-metal {
+    background-color: #0d0d0d;
+    color: var(--text-muted);
+    padding: 4rem 0 2rem;
+    font-size: 0.95rem;
+}
+
+.footer-block {
+    padding: 0 3rem;
+}
+
+.footer-title {
+    color: var(--bronze);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-text {
+    line-height: 1.7;
+}
+
+.footer-link {
+    color: var(--bronze);
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--bronze-light);
+}
+
+.nav-link {
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--bronze-light);
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav li {
+    margin-bottom: 0.4rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(196, 138, 58, 0.2);
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.footer-social a {
+    font-size: 1.4rem;
+    margin: 0 0.5rem;
+    display: inline-block;
+}
+
+/* =====================================================
+   ANIMATIONS AU SCROLL
+===================================================== */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    --animate-delay: 0s; /* délai customisable par élément si besoin */
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: var(--animate-delay);
+}
+
+/* =====================================================
+   KEYFRAMES
+===================================================== */
+@keyframes fadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================================
+   ACCESSIBILITÉ
+===================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 768px) {
+
+    .hero-logo {
+        max-width: 300px;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
+    .hero-cta {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+    
+    .section-metal::after {
+        height: 40px;
+    }
+
+    .footer-block {
+        margin-bottom: 2rem;
+    }
 }
