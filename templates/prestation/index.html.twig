@@ -4,8 +4,98 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Mes prestations</h1>
-    <p>Liste de toutes mes prestations</p>
-</div>
+<!-- ========================= HERO ========================= -->
+<section id="prestations-hero" class="section-metal hero bg-dark-custom text-light py-5">
+    <div class="container text-center animate-on-scroll">
+        <h1 class="display-4 text-bronze fw-bold mb-3">Nos prestations</h1>
+        <p class="lead text-light mb-3">
+            Des services sur mesure en métallurgie et chaudronnerie pour tous vos projets.
+        </p>
+    </div>
+</section>
+
+<!-- ========================= NOS PRESTATIONS ========================= -->
+<section id="prestations-detail" class="section-metal py-5 text-light">
+    <div class="container">
+        <h2 class="mb-5 text-center text-bronze animate-on-scroll">Nos prestations détaillées</h2>
+
+        <div class="row g-4 text-center">
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-ladder text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze mb-2">Escaliers métalliques</h5>
+                <p class="text-muted">Création et installation d'escaliers sur mesure, alliant solidité et design.</p>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-door-closed text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze mb-2">Portails & Portillons</h5>
+                <p class="text-muted">Fabrication de portails et portillons adaptés à votre maison ou entreprise.</p>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-border-all text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze mb-2">Garde-corps & Rampes</h5>
+                <p class="text-muted">Sécurisation et esthétique pour vos balcons, terrasses et escaliers.</p>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-cup text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze mb-2">Meubles & Décor métallique</h5>
+                <p class="text-muted">Tables, étagères, luminaires… chaque pièce est unique et artisanale.</p>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-box-seam text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze mb-2">Cuves & Tôleries industrielles</h5>
+                <p class="text-muted">Fabrication et réparation d'éléments industriels en métal sur mesure.</p>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-lock text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze mb-2">Serrurerie sur mesure</h5>
+                <p class="text-muted">Installation et maintenance de serrures et systèmes de sécurité adaptés à vos besoins.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================= POURQUOI NOUS CHOISIR ========================= -->
+<section id="pourquoi-nous" class="section-metal py-5 text-light bg-dark-soft">
+    <div class="container">
+        <h2 class="mb-5 text-center text-bronze animate-on-scroll">Pourquoi choisir Forge & Dev ?</h2>
+        <div class="row text-center g-4">
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-award text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze">Expertise artisanale</h5>
+                <p>Plus de 20 ans d’expérience dans le travail du métal, garantissant précision et qualité.</p>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-brush text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze">Sur-mesure</h5>
+                <p>Chaque projet est adapté aux besoins du client, du design à la réalisation finale.</p>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <i class="bi bi-shield-lock text-bronze fs-1 mb-3"></i>
+                <h5 class="text-bronze">Fiabilité & sécurité</h5>
+                <p>Matériaux de qualité et finitions soignées pour des réalisations durables et sécurisées.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================= CTA ========================= -->
+<section id="cta-prestations" class="section-metal py-5 text-light text-center animate-on-scroll">
+    <div class="container">
+        <h2 class="text-bronze mb-3">Un projet sur mesure ?</h2>
+        <p class="fs-5">Contactez-nous pour un devis personnalisé et gratuit.</p>
+        <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3">Demander un devis</a>
+    </div>
+</section>
+
 {% endblock %}
