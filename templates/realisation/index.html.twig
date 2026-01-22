@@ -4,9 +4,78 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Mes réalisations</h1>
-    <p>Liste de toutes mes réalisations</p>
-</div>
+<!-- ========================= HERO ========================= -->
+<section id="hero-realisations" class="section-metal hero bg-dark-custom text-light py-5">
+    <div class="container text-center">
+        <h1 class="display-4 text-bronze fw-bold mb-3 animate-on-scroll">Nos réalisations</h1>
+        <p class="lead text-light animate-on-scroll">
+            Découvrez nos projets réalisés sur mesure, alliant qualité, sécurité et design.
+        </p>
+    </div>
+</section>
+
+<!-- ========================= GALERIE RÉALISATIONS ========================= -->
+<section id="galerie" class="section-metal py-5 text-light">
+    <div class="container">
+        <h2 class="mb-5 text-center text-bronze animate-on-scroll">Nos projets</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-4 animate-on-scroll mb-3">
+                <div class="realisation-link">
+                    <div class="realisation-wrapper">
+                        <img src="{{ asset('images/escalier.webp') }}" alt="Escalier métallique" class="realisation-img lightbox-trigger" data-lightbox="realisation-gallery" data-title="Escalier métallique sur mesure" data-index="0">
+                    </div>
+                    <div class="realisation-caption mt-3">Escalier métallique sur mesure</div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll mb-3">
+                <div class="realisation-link">
+                    <div class="realisation-wrapper">
+                        <img src="{{ asset('images/portail.webp') }}" alt="Portail métallique" class="realisation-img lightbox-trigger" data-lightbox="realisation-gallery" data-title="Portail et portillon" data-index="1">
+                    </div>
+                    <div class="realisation-caption mt-3">Portail et portillon</div>
+                </div>
+            </div>
+            <div class="col-md-4 animate-on-scroll mb-3">
+                <div class="realisation-link">
+                    <div class="realisation-wrapper">
+                        <img src="{{ asset('images/garde_corps.webp') }}" alt="Garde-corps métallique" class="realisation-img lightbox-trigger" data-lightbox="realisation-gallery" data-title="Garde-corps et rampes" data-index="2">
+                    </div>
+                    <div class="realisation-caption mt-3">Garde-corps et rampes</div> 
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll mb-3">
+                <div class="realisation-link">
+                    <div class="realisation-wrapper">
+                        <img src="{{ asset('images/table.webp') }}" alt="Table métallique" class="realisation-img lightbox-trigger" data-lightbox="realisation-gallery" data-title="Mobilier métallique et décor" data-index="3">
+                    </div>
+                    <div class="realisation-caption mt-3">Mobilier métallique et décor</div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll mb-3">
+                <div class="realisation-link">
+                    <div class="realisation-wrapper">
+                        <img src="{{ asset('images/serrure.webp') }}" alt="Serrurerie sur mesure" class="realisation-img lightbox-trigger" data-lightbox="realisation-gallery" data-title="Serrurerie sur mesure" data-index="4">
+                    </div>
+                    <div class="realisation-caption mt-3">Serrurerie sur mesure</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================= CTA ========================= -->
+<section id="cta" class="section-metal py-5 text-light text-center animate-on-scroll">
+    <div class="container">
+        <h2 class="text-bronze mb-3">Vous avez un projet ?</h2>
+        <p class="fs-5">Contactez-nous pour un devis personnalisé et gratuit.</p>
+        <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3">Contact</a>
+    </div>
+</section>
 
 {% endblock %}
