@@ -15,25 +15,18 @@
             <!-- Bloc contact SEO local -->
             <div class="col-md-4 footer-block">
                 <h3 class="footer-title">Contact</h3>
-
                 <address class="footer-text">
                     <strong>Téléphone :</strong>
                     <a href="tel:+33606838547" class="footer-link">06 06 83 85 47</a><br>
-
                     <strong>Email :</strong>
-                    <a href="mailto:contact@forge-and-dev.fr" class="footer-link">
-                        contact@forge-and-dev.fr
-                    </a><br>
-
-                    <strong>Zone d’intervention :</strong>
-                    Gironde & Nouvelle-Aquitaine
+                    <a href="mailto:contact@forge-and-dev.fr" class="footer-link">contact@forge-and-dev.fr</a><br>
+                    <strong>Zone d’intervention :</strong> Gironde & Nouvelle-Aquitaine
                 </address>
             </div>
 
             <!-- Bloc navigation & SEO -->
             <div class="col-md-4 footer-block">
                 <h3 class="footer-title">Informations</h3>
-
                 <nav class="footer-nav">
                     <ul>
                         <li><a href="{{ path('app_home') }}" class="nav-link">Accueil</a></li>
@@ -42,6 +35,12 @@
                         <li><a href="{{ path('a_propos') }}" class="nav-link">À propos</a></li>
                         <li><a href="{{ path('tarifs') }}" class="nav-link">Tarifs</a></li>
                         <li><a href="{{ path('contact') }}" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <h3 class="footer-title mt-3">Légal / Confidentialité</h3>
+                <nav class="footer-nav">
+                    <ul>
                         <li><a href="{{ path('mentions_legales') }}" class="nav-link">Mentions légales</a></li>
                         <li><a href="{{ path('politique_confidentialite') }}" class="nav-link">Politique de confidentialité</a></li>
                     </ul>
