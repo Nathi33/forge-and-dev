@@ -4,8 +4,140 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Mes tarifs</h1>
-    <p>Liste de tous mes tarifs</p>
-</div>
+<!-- ========================= HERO ========================= -->
+<section id="hero-tarifs" class="section-metal hero bg-dark-custom text-light py-5">
+    <div class="container text-center">
+        <h1 class="display-4 text-bronze fw-bold mb-3 animate-on-scroll">Tarifs</h1>
+        <p class="lead text-light animate-on-scroll">
+            Des prestations sur mesure, des prix clairs et transparents.
+        </p>
+    </div>
+</section>
+
+<!-- ========================= NOS TARIFS ========================= -->
+<section id="nos-tarifs" class="section-metal py-5 text-light">
+    <div class="container">
+        <h2 class="mb-5 text-bronze text-center animate-on-scroll">Tarifs indicatifs</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Escaliers métalliques</h5>
+                        <p class="card-text">À partir de 1200€ selon le type et la complexité.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Garde-corps et rampes</h5>
+                        <p class="card-text">À partir de 450€ le mètre linéaire, sur mesure.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Portails & portillons</h5>
+                        <p class="card-text">À partir de 900€, matériaux et design personnalisables.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Mobilier métallique</h5>
+                        <p class="card-text">À partir de 200€, selon dimensions et finition.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Serrurerie sur mesure</h5>
+                        <p class="card-text">À partir de 150€, installation et matériaux inclus.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================= NOS DEVIS ========================= -->
+<section id="nos-tarifs" class="section-metal py-5 text-light">
+    <div class="container">
+        <h2 class="mb-5 text-bronze text-center animate-on-scroll">Tarifs sur devis</h2>
+
+        <p class="fs-5 text-center mb-5 animate-on-scroll">
+            Chaque projet est unique et les tarifs sont établis en fonction de vos besoins spécifiques.
+            Contactez-nous pour recevoir un devis personnalisé et gratuit.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Escaliers métalliques</h5>
+                        <p class="card-text">Conception et fabrication sur mesure.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Garde-corps et rampes</h5>
+                        <p class="card-text">Fabrication adaptée à chaque espace et style.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Portails & portillons</h5>
+                        <p class="card-text">Sur mesure pour votre sécurité et votre design.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Mobilier métallique</h5>
+                        <p class="card-text">Tables, décorations et mobilier personnalisés.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-bronze">Serrurerie sur mesure</h5>
+                        <p class="card-text">Assemblage précis et durable selon vos besoins.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================= CTA ========================= -->
+<section id="cta-tarifs" class="section-metal py-5 text-light text-center animate-on-scroll">
+    <div class="container">
+        <h2 class="text-bronze mb-3">Un projet ?</h2>
+        <p class="fs-5">Contactez-moi pour un devis précis et personnalisé.</p>
+        <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3">Contact</a>
+    </div>
+</section>
+
 {% endblock %}
