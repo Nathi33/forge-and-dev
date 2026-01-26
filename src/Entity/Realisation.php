@@ -14,6 +14,12 @@ class Realisation
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(type: 'integer')]
+    private ?int $position = 0;
+
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $homePage = false;
+
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
@@ -28,6 +34,30 @@ class Realisation
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): static
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function isHomePAge(): ?bool
+    {
+        return $this->homePage;
+    }
+
+    public function setHomePage(bool $homePage): static
+    {
+        $this->homePage = $homePage;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -92,5 +122,10 @@ class Realisation
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
 }
