@@ -28,60 +28,111 @@
         {% endfor %}
 
         <div class="row g-5">
-
             <!-- Formulaire -->
-            <div class="col-md-6 animate-on-scroll">
-                <form action="{{ path('contact') }}" method="POST">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nom</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
+            <div class="col-md-6 col-12 animate-on-scroll">
+                {{ form_start(contactForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Téléphone</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" required>
-                    </div>
+                {# Nom #}
+                <div class="mb-3">
+                    {{ form_label(contactForm.name) }}
+                    {{ form_widget(contactForm.name, {
+                        'attr': {
+                            'placeholder': 'Votre nom',
+                            'aria-label': 'Nom',
+                            'maxlength': 255,
+                            'class': 'form-control' ~ (contactForm.name.vars.valid ? '' : ' is-invalid')
+                        }
+                    }) }}
+                    {{ form_errors(contactForm.name) }}
+                </div>
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
+                {# Téléphone #}
+                <div class="mb-3">
+                    {{ form_label(contactForm.phone) }}
+                    {{ form_widget(contactForm.phone, {
+                        'attr': {
+                            'placeholder': 'Votre téléphone',
+                            'aria-label': 'Téléphone',
+                            'maxlength': 20,
+                            'class': 'form-control' ~ (contactForm.phone.vars.valid ? '' : ' is-invalid')
+                        }
+                    }) }}
+                    {{ form_errors(contactForm.phone) }}
+                </div>
 
-                    <div class="mb-3">
-                        <label for="subject" class="form-label">Objet</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required>
-                    </div>
+                {# Email #}
+                <div class="mb-3">
+                    {{ form_label(contactForm.email) }}
+                    {{ form_widget(contactForm.email, {
+                        'attr': {
+                            'placeholder': 'Votre email',
+                            'aria-label': 'Email',
+                            'maxlength': 255,
+                            'class': 'form-control' ~ (contactForm.email.vars.valid ? '' : ' is-invalid')
+                        }
+                    }) }}
+                    {{ form_errors(contactForm.email) }}
+                </div>
 
-                    <div class="mb-3">
-                        <label for="project_type" class="form-label">Type de projet</label>
-                        <select id="project_type" name="project_type" class="form-select" required>
-                            <option value="" disabled selected>Choisissez un type de projet</option>
-                            <option value="escalier">Escalier</option>
-                            <option value="portail">Portail</option>
-                            <option value="garde-corps">Garde-corps</option>
-                            <option value="serrurerie">Serrurerie</option>
-                            <option value="mobilier">Mobilier décoratif</option>
-                            <option value="autre">Autre</option>
-                        </select>
-                    </div>
+                {# Objet #}
+                <div class="mb-3">
+                    {{ form_label(contactForm.subject) }}
+                    {{ form_widget(contactForm.subject, {
+                        'attr': {
+                            'placeholder': 'Objet de votre message',
+                            'aria-label': 'Objet',
+                            'maxlength': 255,
+                            'class': 'form-control' ~ (contactForm.subject.vars.valid ? '' : ' is-invalid')
+                        }
+                    }) }}
+                    {{ form_errors(contactForm.subject) }}
+                </div>
 
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea id="message" name="message" rows="6" class="form-control" required></textarea>
-                    </div>
+                {# Type de projet #}
+                <div class="mb-3">
+                    {{ form_label(contactForm.project_type) }}
+                    {{ form_widget(contactForm.project_type, {
+                        'attr': {
+                            'aria-label': 'Type de projet',
+                            'class': 'form-select' ~ (contactForm.project_type.vars.valid ? '' : ' is-invalid')
+                        }
+                    }) }}
+                    {{ form_errors(contactForm.project_type) }}
+                </div>
 
-                    <button type="submit" class="btn btn-primary mt-3" aria-label="Envoyer le formulaire de contact">Envoyer</button>
-                </form>
+                {# Message #}
+                <div class="mb-3">
+                    {{ form_label(contactForm.message) }}
+                    {{ form_widget(contactForm.message, {
+                        'attr': {
+                            'placeholder': 'Votre message...',
+                            'aria-label': 'Message',
+                            'rows': 6,
+                            'maxlength': 2000,
+                            'class': 'form-control' ~ (contactForm.message.vars.valid ? '' : ' is-invalid')
+                        }
+                    }) }}
+                    {{ form_errors(contactForm.message) }}
+                </div>
+
+                {# Honeypot invisible #}
+                {{ form_widget(contactForm.honeypot, {'attr': {'style': 'display:none', 'tabindex': '-1', 'autocomplete': 'off'}}) }}
+
+                {# Bouton submit #}
+                <div class="mb-3">
+                    {{ form_widget(contactForm.submit, {'attr': {'class': 'btn btn-primary mt-3'}}) }}
+                </div>
+
+                {{ form_end(contactForm) }}
             </div>
 
             <!-- Coordonnées -->
-            <div class="col-md-6 animate-on-scroll">
+            <div class="col-md-6 col-12 animate-on-scroll">
                 <h3 class="text-bronze mb-3">Coordonnées</h3>
-                <p><i class="bi bi-telephone-fill me-2"></i> <a href="tel: 06 06 83 85 47">06 06 83 85 47</a></p>
+                <p><i class="bi bi-telephone-fill me-2"></i> <a href="tel:0606838547">06 06 83 85 47</a></p>
                 <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:contact@forge-dev.fr">contact@forge-dev.fr</a></p>
                 <p><i class="bi bi-geo-alt-fill me-2"></i> 33920 Saint Christoly de Blaye</p>
 
-                <!-- Carte (optionnelle) -->
                 <div class="mt-4">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2782.123456789!2d-0.555555!3d45.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5555555!2sSaint+Christoly+de+Blaye!5e0!3m2!1sfr!2sfr!4v1699999999999" 
@@ -94,13 +145,20 @@
                     </iframe>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    // Scroll vers le premier champ avec erreur
+    const firstErrorField = document.querySelector('.is-invalid');
+    if (firstErrorField) {
+        firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstErrorField.focus();
+    }
+
+    // Fermeture automatique des alertes flash
     const alerts = document.querySelectorAll('.alert');
     alerts.forEach(alert => {
         setTimeout(() => {
@@ -114,4 +172,3 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 {% endblock %}
-
