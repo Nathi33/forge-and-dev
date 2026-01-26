@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -14,42 +15,52 @@ final class ContactController extends AbstractController
     #[Route('/contact', name: 'contact')]
     public function index(Request $request, MailerInterface $mailer): Response
     {
-        // Traitement du formulaire
-        if ($request->isMethod('POST')) {
-            $name = $request->request->get('name');
-            $phone = $request->request->get('phone');
-            $email = $request->request->get('email');
-            $subject = $request->request->get('subject');
-            $projectType = $request->request->get('project_type');
-            $message = $request->request->get('message');
+        // Création du formulaire
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
 
-            // Validation
-            if (!$name || !$phone || !$email || !$subject || !$projectType || !$message) {
-                $this->addFlash('error', 'Veuillez remplir tous les champs du formulaire.');
+        // Si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // ✅ Vérification honeypot anti-spam
+            if ($form->get('honeypot')->getData()) {
+                $this->addFlash('danger', 'Spam détecté.');
                 return $this->redirectToRoute('contact');
             }
+
+            // Récupération des données du formulaire
+            $data = $form->getData();
 
             try {
+                // Création de l'email
                 $emailMessage = (new Email())
-                    ->from($email)
-                    ->to('contact@forge-dev.fr')
-                    ->subject($subject)
-                    ->text("Nom: $name\nTéléphone: $phone\nType de projet: $projectType\n\n$message");
+                    ->from('no-reply@forge-dev.fr')      // From fixe pour éviter les rejets
+                    ->replyTo($data['email'])            // Réponse vers l'utilisateur
+                    ->to('contact@forge-dev.fr')         // Destinataire
+                    ->subject("[Contact Forge & Dev] {$data['subject']}")
+                    ->html(
+                        "<h3>Nouveau message de contact</h3>" .
+                        "<p><strong>Nom :</strong> " . htmlspecialchars($data['name']) . "</p>" .
+                        "<p><strong>Téléphone :</strong> " . htmlspecialchars($data['phone']) . "</p>" .
+                        "<p><strong>Email :</strong> " . htmlspecialchars($data['email']) . "</p>" .
+                        "<p><strong>Type de projet :</strong> " . htmlspecialchars($data['project_type']) . "</p>" .
+                        "<p><strong>Message :</strong><br/>" . nl2br(htmlspecialchars($data['message'])) . "</p>"
+                    );
 
+                // Envoi de l'email
                 $mailer->send($emailMessage);
-                $this->addFlash('success', 'Votre message a bien été envoyé !');
-            } 
-            
-            catch (\Exception $e) {
-                $this->addFlash('error', 'Une erreur est survenue lors de l\'envoi du message.');
-                return $this->redirectToRoute('contact');
-            }
 
-            return $this->redirectToRoute('contact');
+                $this->addFlash('success', 'Votre message a bien été envoyé !');
+                return $this->redirectToRoute('contact');
+            } catch (\Exception $e) {
+                // Gestion des erreurs d'envoi
+                $this->addFlash('danger', 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.');
+            }
         }
 
+        // Affichage du formulaire
         return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
+            'contactForm' => $form->createView(),
         ]);
     }
 }
