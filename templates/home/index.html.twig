@@ -25,37 +25,35 @@
     <div class="container">
         <h2 class="mb-4 text-center text-bronze animate-on-scroll">Actualités</h2>
 
-        <div id="carouselActualites" class="carousel slide animate-on-scroll" data-bs-ride="carousel">
-            <div class="carousel-inner">
+        {% if actualites|length > 0 %}
+            <div id="carouselActualites" class="carousel slide animate-on-scroll" data-bs-ride="carousel">
+                <div class="carousel-inner">
 
-                <div class="carousel-item active">
-                    <div class="text-center fs-5 animate-on-scroll">
-                        🔥 Chantier en cours – Mise à jour récente
-                    </div>
+                    {% for actualite in actualites %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <div class="text-center fs-5 animate-on-scroll">
+                                {{ actualite.contenu }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
                 </div>
 
-                <div class="carousel-item">
-                    <div class="text-center fs-5 animate-on-scroll">
-                        🛠️ Nouvelle réalisation disponible
-                    </div>
-                </div>
+                {% if actualites|length > 1 %}
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselActualites" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
 
-                <div class="carousel-item">
-                    <div class="text-center fs-5 animate-on-scroll">
-                        📅 Fermeture exceptionnelle le 31 janvier
-                    </div>
-                </div>
-
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselActualites" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                {% endif %}
             </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselActualites" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselActualites" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
+        {% else %}
+            <p class="text-center fs-5 animate-on-scroll">
+                Aucune actualité pour le moment.
+            </p>
+        {% endif %}
     </div>
 </section>
 
@@ -114,10 +112,14 @@
         <h2 class="mb-5 text-center text-bronze animate-on-scroll">Nos réalisations</h2>
 
         <div class="row g-4">
-            {% for real in ['escalier', 'portail', 'portillon'] %}
+            {% for real in homeRealisations %}
                 <div class="col-md-4 animate-on-scroll">
                     <a href="{{ path('realisation') }}" class="realisation-link animate-on-scroll">
-                        <img src="{{ asset('images/' ~ real ~ '.webp') }}" class="realisation-img animate-on-scroll" alt="Réalisation {{ real }}">
+                        <img 
+                            src="{{ asset('uploads/realisations/' ~ real.image) }}" 
+                            class="realisation-img animate-on-scroll" 
+                            alt="{{ real.titre }}"
+                        >
                     </a>
                 </div>
             {% endfor %}

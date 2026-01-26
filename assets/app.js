@@ -49,6 +49,10 @@ if (lightboxTriggers.length) {
             <button class="lightbox-close">&times;</button>
             <button class="lightbox-prev">&#10094;</button>
             <img src="" alt="">
+            <div class="lightbox-caption">
+                <h3></h3>
+                <p></p>
+            </div>
             <button class="lightbox-next">&#10095;</button>
         </div>
     `;
@@ -59,10 +63,16 @@ if (lightboxTriggers.length) {
     const btnClose = overlay.querySelector('.lightbox-close');
     const btnPrev = overlay.querySelector('.lightbox-prev');
     const btnNext = overlay.querySelector('.lightbox-next');
+    const titleEl = overlay.querySelector('.lightbox-caption h3');
+    const descEl = overlay.querySelector('.lightbox-caption p');
 
     const openLightbox = index => {
         currentIndex = index;
-        overlayImg.src = images[currentIndex];
+        const img = lightboxTriggers[currentIndex];
+        overlayImg.src = img.src;
+        titleEl.textContent = img.dataset.title || '';
+        descEl.textContent = img.dataset.description || '';
+        descEl.style.display = descEl.textContent ? 'block' : 'none';
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     };
@@ -73,13 +83,21 @@ if (lightboxTriggers.length) {
     };
 
     const showPrev = () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        overlayImg.src = images[currentIndex];
+        currentIndex = (currentIndex - 1 + lightboxTriggers.length) % lightboxTriggers.length;
+        const img = lightboxTriggers[currentIndex];
+        overlayImg.src = img.src;
+        titleEl.textContent = img.dataset.title || '';
+        descEl.textContent = img.dataset.description || '';
+        descEl.style.display = descEl.textContent ? 'block' : 'none';
     };
 
     const showNext = () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        overlayImg.src = images[currentIndex];
+        currentIndex = (currentIndex + 1) % lightboxTriggers.length;
+        const img = lightboxTriggers[currentIndex];
+        overlayImg.src = img.src;
+        titleEl.textContent = img.dataset.title || '';
+        descEl.textContent = img.dataset.description || '';
+        descEl.style.display = descEl.textContent ? 'block' : 'none';
     };
 
     // Events images

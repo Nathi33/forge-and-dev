@@ -1,0 +1,18 @@
+# translations/EasyAdminBundle.fr.yaml
+EasyAdminBundle:
+    action.new: "Ajouter"
+    action.edit: "Modifier"
+    action.delete: "Supprimer"
+    action.save: "Enregistrer"
+    action.save_and_add_another: "Enregistrer et ajouter un autre"
+    action.save_and_continue: "Enregistrer et continuer"
+    action.cancel: "Annuler"
+    action.list: "Retour à la liste"
+    search.page_title: "Recherche de %entity_label%"
+    list.page_title: "%entity_label%"
+    list.row_actions: "Actions"
+    paginator.first: "Premier"
+    paginator.previous: "Précédent"
+    paginator.next: "Suivant"
+    paginator.last: "Dernier"
+    paginator.counter: "Page %page% sur %pages%"

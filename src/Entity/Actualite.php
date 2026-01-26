@@ -13,59 +13,47 @@ class Actualite
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $titre = null;
+    #[ORM\Column(type: 'text')]
+    private ?string $contenu;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $contenu = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?bool $actif = null;
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $actif = true;
 
     #[ORM\Column(nullable: true)]
     private ?int $ordre = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTime $createdAt = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitre(): ?string
-    {
-        return $this->titre;
-    }
-
-    public function setTitre(?string $titre): static
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getContenu(): ?string
+    public function getContenu(): string
     {
         return $this->contenu;
     }
 
-    public function setContenu(?string $contenu): static
+    public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
-
         return $this;
     }
 
-    public function isActif(): ?bool
+    public function isActif(): bool
     {
         return $this->actif;
     }
 
-    public function setActif(?bool $actif): static
+    public function setActif(bool $actif): self
     {
         $this->actif = $actif;
-
         return $this;
     }
 
@@ -74,22 +62,14 @@ class Actualite
         return $this->ordre;
     }
 
-    public function setOrdre(?int $ordre): static
+    public function setOrdre(?int $ordre): self
     {
         $this->ordre = $ordre;
-
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(?\DateTime $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 }

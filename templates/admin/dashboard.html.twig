@@ -1,0 +1,27 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-5 text-center">Tableau de bord - Administration</h1>
+
+    <div class="row g-4 justify-content-center">
+
+        <div class="col-md-4">
+            <a href="{{ urlActualites }}" class="card text-center text-decoration-none p-4 shadow-sm">
+                <i class="fa fa-newspaper fa-3x mb-3"></i>
+                <h3>Actualités</h3>
+                <p>Gérer les actualités affichées sur la page d’accueil.</p>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="{{ urlRealisations }}" class="card text-center text-decoration-none p-4 shadow-sm">
+                <i class="fa fa-images fa-3x mb-3"></i>
+                <h3>Réalisations</h3>
+                <p>Gérer les projets et les images visibles sur le site.</p>
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
