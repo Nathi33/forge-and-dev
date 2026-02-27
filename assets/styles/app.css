@@ -393,6 +393,10 @@ img.rounded {
     transform: translateY(0);
 }
 
+.form-label + .text-danger {
+    margin-left: 0.25rem;
+}
+
 /* =====================================================
    FOOTER
 ===================================================== */
@@ -458,6 +462,13 @@ img.rounded {
     margin: 0 0.5rem;
     display: inline-block;
 }
+
+/* =====================================================
+   FORMULAIRE DE CONNEXION
+===================================================== */
+/* .form-connexion {
+    margin-bottom: 5rem;
+} */
 
 /* =====================================================
    ANIMATIONS AU SCROLL

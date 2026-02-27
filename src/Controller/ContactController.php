@@ -31,43 +31,21 @@ final class ContactController extends AbstractController
                 return $this->redirectToRoute('contact');
             }
 
-            /**
-             * 🚦 LIMITATION D’ENVOI (DÉSACTIVÉE POUR LE MOMENT)
-             *
-             * Pour activer :
-             * 1) Décommenter le use RateLimiterFactory
-             * 2) Décommenter l’argument du contrôleur
-             * 3) Décommenter le bloc ci-dessous
-             */
-            
-            /*$limiter = $contactFormLimiter->create($request->getClientIp());
-            if (!$limiter->consume(1)->isAccepted()) {
-                $this->addFlash(
-                    'danger',
-                    'Vous avez atteint la limite d’envoi de messages. Merci de réessayer plus tard.'
-                );
-                return $this->redirectToRoute('contact');
-            }
-            
-            */
-
             $data = $form->getData();
 
             try {
                 $emailMessage = (new Email())
-                    ->from('no-reply@forge-dev.fr')
-                    ->replyTo($data['email'])
-                    ->to('contact@forge-dev.fr')
+                    ->from('contact@forge-and-dev.fr')
+                    ->to('contact@forge-and-dev.fr')
                     ->subject('[Contact Forge & Dev] ' . $data['subject'])
-                    ->html(
-                        '<h3>Nouveau message de contact</h3>' .
-                        '<p><strong>Nom :</strong> ' . htmlspecialchars($data['name']) . '</p>' .
-                        '<p><strong>Téléphone :</strong> ' . htmlspecialchars($data['phone']) . '</p>' .
-                        '<p><strong>Email :</strong> ' . htmlspecialchars($data['email']) . '</p>' .
-                        '<p><strong>Type de projet :</strong> ' . htmlspecialchars($data['project_type']) . '</p>' .
-                        '<p><strong>Message :</strong><br>' .
-                        nl2br(htmlspecialchars($data['message'])) . '</p>'
-                    );
+                    ->htmlTemplate('email/contact.html.twig')
+                    ->contexte([
+                        'name' => $data['name'],
+                        'phone' => $data['phone'],
+                        'email' => $data['email'],
+                        'project_type' => $data['project_type'],
+                        'message' => $data['message'],
+                    ]);
 
                 $mailer->send($emailMessage);
 
