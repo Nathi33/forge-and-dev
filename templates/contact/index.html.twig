@@ -28,97 +28,26 @@
         {% endfor %}
 
         <div class="row g-5">
-            <!-- Formulaire -->
             <div class="col-md-6 col-12 animate-on-scroll">
-                {{ form_start(contactForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_start(contactForm, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation', 'id': 'contact-form'}}) }}
 
-                {# Nom #}
-                <div class="mb-3">
-                    {{ form_label(contactForm.name) }}
-                    {{ form_widget(contactForm.name, {
-                        'attr': {
-                            'placeholder': 'Votre nom',
-                            'aria-label': 'Nom',
-                            'maxlength': 255,
-                            'class': 'form-control' ~ (contactForm.name.vars.valid ? '' : ' is-invalid')
-                        }
-                    }) }}
-                    {{ form_errors(contactForm.name) }}
-                </div>
+                {% for field in ['name', 'phone', 'email', 'subject', 'project_type', 'message'] %}
+                    <div class="mb-3">
+                        {% set formField = attribute(contactForm, field) %}
+                        {{ form_label(formField, null, {'label_attr': {'class': 'form-label'}}) }} <span class="text-danger">*</span>
+                        {{ form_widget(formField, {
+                            'attr': {
+                                'class': 'form-control' ~ (formField.vars.valid ? '' : ' is-invalid'),
+                                'placeholder': formField.vars.placeholder|default(''),
+                                'required': 'required'
+                            }
+                        }) }}
+                        <div class="invalid-feedback">Ce champ est obligatoire.</div>
+                    </div>
+                {% endfor %}
 
-                {# Téléphone #}
-                <div class="mb-3">
-                    {{ form_label(contactForm.phone) }}
-                    {{ form_widget(contactForm.phone, {
-                        'attr': {
-                            'placeholder': 'Votre téléphone',
-                            'aria-label': 'Téléphone',
-                            'maxlength': 20,
-                            'class': 'form-control' ~ (contactForm.phone.vars.valid ? '' : ' is-invalid')
-                        }
-                    }) }}
-                    {{ form_errors(contactForm.phone) }}
-                </div>
-
-                {# Email #}
-                <div class="mb-3">
-                    {{ form_label(contactForm.email) }}
-                    {{ form_widget(contactForm.email, {
-                        'attr': {
-                            'placeholder': 'Votre email',
-                            'aria-label': 'Email',
-                            'maxlength': 255,
-                            'class': 'form-control' ~ (contactForm.email.vars.valid ? '' : ' is-invalid')
-                        }
-                    }) }}
-                    {{ form_errors(contactForm.email) }}
-                </div>
-
-                {# Objet #}
-                <div class="mb-3">
-                    {{ form_label(contactForm.subject) }}
-                    {{ form_widget(contactForm.subject, {
-                        'attr': {
-                            'placeholder': 'Objet de votre message',
-                            'aria-label': 'Objet',
-                            'maxlength': 255,
-                            'class': 'form-control' ~ (contactForm.subject.vars.valid ? '' : ' is-invalid')
-                        }
-                    }) }}
-                    {{ form_errors(contactForm.subject) }}
-                </div>
-
-                {# Type de projet #}
-                <div class="mb-3">
-                    {{ form_label(contactForm.project_type) }}
-                    {{ form_widget(contactForm.project_type, {
-                        'attr': {
-                            'aria-label': 'Type de projet',
-                            'class': 'form-select' ~ (contactForm.project_type.vars.valid ? '' : ' is-invalid')
-                        }
-                    }) }}
-                    {{ form_errors(contactForm.project_type) }}
-                </div>
-
-                {# Message #}
-                <div class="mb-3">
-                    {{ form_label(contactForm.message) }}
-                    {{ form_widget(contactForm.message, {
-                        'attr': {
-                            'placeholder': 'Votre message...',
-                            'aria-label': 'Message',
-                            'rows': 6,
-                            'maxlength': 2000,
-                            'class': 'form-control' ~ (contactForm.message.vars.valid ? '' : ' is-invalid')
-                        }
-                    }) }}
-                    {{ form_errors(contactForm.message) }}
-                </div>
-
-                {# Honeypot invisible #}
                 {{ form_widget(contactForm.honeypot, {'attr': {'style': 'display:none', 'tabindex': '-1', 'autocomplete': 'off'}}) }}
 
-                {# Bouton submit #}
                 <div class="mb-3">
                     {{ form_widget(contactForm.submit, {'attr': {'class': 'btn btn-primary mt-3'}}) }}
                 </div>
@@ -126,7 +55,6 @@
                 {{ form_end(contactForm) }}
             </div>
 
-            <!-- Coordonnées -->
             <div class="col-md-6 col-12 animate-on-scroll">
                 <h3 class="text-bronze mb-3">Coordonnées</h3>
                 <p><i class="bi bi-telephone-fill me-2"></i> <a href="tel:0606838547">06 06 83 85 47</a></p>
@@ -151,6 +79,17 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', function(event) {
+        // Vérifie les champs obligatoires
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add('was-validated'); // montre les feedback invalides
+        }
+    }, false);
+
     // Scroll vers le premier champ avec erreur
     const firstErrorField = document.querySelector('.is-invalid');
     if (firstErrorField) {
