@@ -41,6 +41,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $resetTokenExpiresAt = null;
 
     // ---------------------------
+    // Nouveau champ pour email en attente de confirmation
+    // ---------------------------
+    #[ORM\Column(type: "string", length: 180, nullable: true)]
+    private ?string $newEmail = null;
+
+    #[ORM\Column(type: "boolean")]
+    private bool $emailConfirmed = true; // true par défaut si l'actuel est confirmé
+
+    // ---------------------------
     // Getters / Setters existants
     // ---------------------------
     public function getId(): ?int
@@ -125,6 +134,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setResetTokenExpiresAt(?\DateTimeInterface $expiresAt): static
     {
         $this->resetTokenExpiresAt = $expiresAt;
+        return $this;
+    }
+
+    public function getNewEmail(): ?string
+    {
+        return $this->newEmail;
+    }
+
+    public function setNewEmail(?string $newEmail): static
+    {
+        $this->newEmail = $newEmail;
+        return $this;
+    }
+
+    public function isEmailConfirmed(): bool
+    {
+        return $this->emailConfirmed;
+    }
+
+    public function setEmailConfirmed(bool $confirmed): static
+    {
+        $this->emailConfirmed = $confirmed;
         return $this;
     }
 }
