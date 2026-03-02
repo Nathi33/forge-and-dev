@@ -5,3 +5,15 @@ app_login:
 app_logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
+
+admin_change_password:
+    path: /admin/change-password
+    controller: App\Controller\Admin\DashboardController::changePassword
+
+app_forgot_password_request:
+    path: /forgot-password
+    controller: App\Controller\Security\ForgotPasswordController::request
+
+app_reset_password:
+    path: /reset-password/{token}
+    controller: App\Controller\Security\ResetPasswordController::reset

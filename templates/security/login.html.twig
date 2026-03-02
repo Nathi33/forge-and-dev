@@ -4,25 +4,69 @@
 
 {% block body %}
 <section class="section-metal hero bg-dark-custom text-light py-5">
-    <h1 class="ms-5 mb-5">Connexion</h1>
+    <div class="container">
+        <h1 class="mb-5 text-bronze">Connexion</h1>
 
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    <div class="ms-5 mb-3">
-        <form method="post">
-            <label for="email">Email :</label>
-            <input type="email" name="email" id="email" value="{{ last_username }}" required autofocus>
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <form method="post">
 
-            <label for="password">Mot de passe :</label>
-            <input type="password" name="password" id="password" required>
+                {# Email #}
+                <div class="mb-4">
+                    <label for="email" class="form-label">Email :</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ last_username }}" required autofocus>
+                </div>
 
-            <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}">
+                {# Mot de Passe #}
+                <div class="mb-4">
+                    <label for="password" class="form-label">Mot de passe :</label>
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" class="form-control" required>
+                        <button type="button" class="btn btn-outline-secondary toggle-password-eye" tabindex="-1">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+                    </div>
+                </div>
 
-            <button type="submit">Se connecter</button>
-        </form>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
+                </div>
+
+                <div class="mt-3">
+                    <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".toggle-password-eye").forEach(button => {
+        const input = button.parentElement.querySelector("input");
+        const icon = button.querySelector("i");
+
+        button.addEventListener("click", () => {
+            const type = input.getAttribute("type") === "password" ? "text" : "password";
+            input.setAttribute("type", type);
+
+            icon.classList.toggle("bi-eye-fill");
+            icon.classList.toggle("bi-eye-slash-fill");
+        });
+
+        // Effet grossissant au survol
+        button.addEventListener("mouseenter", () => {
+            icon.style.transform = "scale(1.2)";
+        });
+        button.addEventListener("mouseleave", () => {
+            icon.style.transform = "scale(1)";
+        });
+    });
+});
+</script>
 {% endblock %}

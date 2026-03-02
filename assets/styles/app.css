@@ -466,9 +466,18 @@ img.rounded {
 /* =====================================================
    FORMULAIRE DE CONNEXION
 ===================================================== */
-/* .form-connexion {
-    margin-bottom: 5rem;
-} */
+#togglePassword i {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#togglePassword:hover i {
+    transform: scale(1.2);
+    color: #c48a3a;
+}
+
+#togglePassword:active i {
+    transform: scale(1.05);
+}
 
 /* =====================================================
    ANIMATIONS AU SCROLL

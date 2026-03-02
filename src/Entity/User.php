@@ -31,6 +31,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    // ---------------------------
+    // Nouveaux champs pour reset
+    // ---------------------------
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private ?string $resetToken = null;
+
+    #[ORM\Column(type: "datetime", nullable: true)]
+    private ?\DateTimeInterface $resetTokenExpiresAt = null;
+
+    // ---------------------------
+    // Getters / Setters existants
+    // ---------------------------
     public function getId(): ?int
     {
         return $this->id;
@@ -48,23 +60,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -80,9 +83,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -95,14 +95,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
-     */
     public function __serialize(): array
     {
         $data = (array) $this;
         $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
 
         return $data;
+    }
+
+    // ---------------------------
+    // Getters / Setters pour reset
+    // ---------------------------
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): static
+    {
+        $this->resetToken = $resetToken;
+        return $this;
+    }
+
+    public function getResetTokenExpiresAt(): ?\DateTimeInterface
+    {
+        return $this->resetTokenExpiresAt;
+    }
+
+    public function setResetTokenExpiresAt(?\DateTimeInterface $expiresAt): static
+    {
+        $this->resetTokenExpiresAt = $expiresAt;
+        return $this;
     }
 }
