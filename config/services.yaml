@@ -1,23 +1,28 @@
-# yaml-language-server: $schema=../vendor/symfony/dependency-injection/Loader/schema/services.schema.json
+# config/services.yaml
 
-# This file is the entry point to configure your own services.
-# Files in the packages/ subdirectory configure your dependencies.
-# See also https://symfony.com/doc/current/service_container/import.html
+# Paramètres globaux de l'application
+parameters: {}
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
-parameters:
-
+# Configuration des services
 services:
-    # default configuration for services in *this* file
+    # Configuration par défaut pour tous les services déclarés dans ce fichier
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        autowire: true      # Injection automatique des dépendances
+        autoconfigure: true # Configuration automatique pour les commandes, subscribers, etc.
+        public: false       # Tous les services sont privés par défaut
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
+    # Déclaration des services de l'application : src/ est analysé automatiquement
     App\:
         resource: '../src/'
+        # Exclure les répertoires spécifiques si besoin
+        # exclude: '../src/{DependencyInjection,Entity,Migrations,Tests}'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # Déclarer explicitement tes controllers comme publics pour Symfony 8
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+        public: true
+
+    App\Controller\Security\ForgotPasswordController:
+        public: true
+        tags: ['controller.service_arguments']
