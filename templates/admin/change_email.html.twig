@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="container py-5">
+    <h1 class="mb-5 text-bronze text-center">Modifier mon adresse email</h1>
+
+    <div style="max-width: 400px; margin: 0 auto;">
+        {# Flash messages #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+
+            {# Mot de passe actuel avec œil #}
+            <div class="mb-3">
+                {{ form_label(form.currentPassword, 'Mot de passe actuel') }}
+                <div class="input-group">
+                    {{ form_widget(form.currentPassword, {'attr': {'class': 'form-control', 'placeholder': 'Votre mot de passe actuel'}}) }}
+                    <button type="button" class="btn btn-outline-secondary toggle-password-eye" tabindex="-1">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                </div>
+                {{ form_errors(form.currentPassword) }}
+            </div>
+
+            {# Nouvelle adresse email #}
+            <div class="mb-3">
+                {{ form_row(form.newEmail, {'label': 'Nouvelle adresse email'}) }}
+            </div>
+
+            <div class="d-grid mt-5">
+                {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+            </div>
+
+        {{ form_end(form) }}
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".toggle-password-eye").forEach(button => {
+        const input = button.parentElement.querySelector("input");
+        const icon = button.querySelector("i");
+
+        button.addEventListener("click", () => {
+            const type = input.getAttribute("type") === "password" ? "text" : "password";
+            input.setAttribute("type", type);
+
+            icon.classList.toggle("bi-eye-fill");
+            icon.classList.toggle("bi-eye-slash-fill");
+        });
+
+        button.addEventListener("mouseenter", () => icon.style.transform = "scale(1.2)");
+        button.addEventListener("mouseleave", () => icon.style.transform = "scale(1)");
+    });
+});
+</script>
+{% endblock %}

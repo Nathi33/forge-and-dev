@@ -17,3 +17,11 @@ app_forgot_password_request:
 app_reset_password:
     path: /reset-password/{token}
     controller: App\Controller\Security\ResetPasswordController::reset
+
+admin_change_email:
+    path: /admin/change-email
+    controller: App\Controller\Admin\DashboardController::changeEmail
+
+admin_confirm_email:
+    path: /admin/confirm-email/{token}
+    controller: App\Controller\Admin\DashboardController::confirmEmail
