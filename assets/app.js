@@ -6,6 +6,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
+import './images/savoir-faire.webp'
+import './images/logo.png'
+
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         const elements = document.querySelectorAll('.animate-on-scroll');

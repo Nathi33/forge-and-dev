@@ -8,16 +8,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
-//use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Psr\Log\LoggerInterface;
 
 final class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'contact')]
     public function index(
         Request $request,
-        MailerInterface $mailer
-        // RateLimiterFactory $contactFormLimiter
+        MailerInterface $mailer,
+        LoggerInterface $logger
     ): Response
     {
         $form = $this->createForm(ContactType::class);
@@ -25,7 +25,7 @@ final class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // ✅ Honeypot anti-spam
+            // Honeypot anti-spam
             if ($form->get('honeypot')->getData()) {
                 $this->addFlash('danger', 'Spam détecté.');
                 return $this->redirectToRoute('contact');
@@ -34,15 +34,17 @@ final class ContactController extends AbstractController
             $data = $form->getData();
 
             try {
-                $emailMessage = (new Email())
+                $emailMessage = (new TemplatedEmail())
                     ->from('contact@forge-and-dev.fr')
-                    ->to('contact@forge-and-dev.fr')
-                    ->subject('[Contact Forge & Dev] ' . $data['subject'])
+                    ->to('contact@forge-and-dev.fr')  
+                    ->replyTo($data['email'])
+                    ->subject('[Formulaire de Contact Forge & Dev] ' . $data['subject'])
                     ->htmlTemplate('email/contact.html.twig')
-                    ->contexte([
+                    ->context([
                         'name' => $data['name'],
                         'phone' => $data['phone'],
-                        'email' => $data['email'],
+                        'user_email' => $data['email'],
+                        'subject' => $data['subject'],
                         'project_type' => $data['project_type'],
                         'message' => $data['message'],
                     ]);
@@ -53,6 +55,7 @@ final class ContactController extends AbstractController
                 return $this->redirectToRoute('contact');
 
             } catch (\Exception $e) {
+                $logger->error('Erreur envoi email Contact :' . $e->getMessage());
                 $this->addFlash(
                     'danger',
                     'Une erreur est survenue lors de l’envoi du message. Veuillez réessayer plus tard.'

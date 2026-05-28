@@ -2,51 +2,229 @@
 
 {% block title %}Nos réalisations - Forge & Dev{% endblock %}
 
+{% block meta_description %}
+Découvrez les réalisations sur mesure de Forge & Dev : escaliers, portails, garde-corps, meubles et braseros artisanaux en acier et acier corten.
+{% endblock %}
+
 {% block body %}
 
 <!-- ========================= HERO ========================= -->
 <section id="hero-realisations" class="section-metal hero bg-dark-custom text-light py-5">
     <div class="container text-center">
-        <h1 class="display-4 text-bronze fw-bold mb-3 animate-on-scroll">Nos réalisations</h1>
+        <h1 class="display-4 text-bronze fw-bold mb-3 animate-on-scroll">
+            Nos réalisations
+        </h1>
         <p class="lead text-light animate-on-scroll">
-            Découvrez nos projets réalisés sur mesure, alliant qualité, sécurité et design.
+            Découvrez nos projets réalisés sur mesure.
         </p>
     </div>
 </section>
 
-<!-- ========================= GALERIE RÉALISATIONS ========================= -->
-<section id="galerie" class="section-metal py-5 text-light">
-    <div class="container">
-        <h2 class="mb-5 text-center text-bronze animate-on-scroll">Nos projets</h2>
-        <div class="row g-4">
-            {% for realisation in realisations %}
-                <div class="col-md-4 animate-on-scroll mb-3">
-                    <div class="realisation-link">
-                        <div class="realisation-wrapper">
-                            <img
-                                src="{{ asset('uploads/realisations/' ~ realisation.image) }}"
-                                alt="{{ realisation.titre }}"
-                                class="realisation-img lightbox-trigger"
-                                data-title="{{ realisation.titre }}"
-                                data-description="{{ realisation.description|e('html_attr') }}"
-                            >
-                        </div>
-                        <div class="realisation-caption mt-3">
-                            {{ realisation.titre }}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+<!-- ========================= INTRO ========================= -->
+<section id="intro-galerie" class="section-metal py-3 text-light">
+    <div class="container text-center">
+        <p class="fs-5 animate-on-scroll">
+            Chaque réalisation est unique et fabriquée sur mesure en atelier.
+        </p>
     </div>
 </section>
+
+<!-- ========================= CATEGORIES ========================= -->
+<section id="galerie" class="section-metal py-5 text-light">
+    <div class="container">
+
+        <h2 class="mb-5 text-center text-bronze animate-on-scroll">
+            Nos projets
+        </h2>
+
+        <div class="row g-5">
+
+            {% for categorie, items in realisationsParCategorie %}
+
+                <div class="col-md-6 col-lg-4 animate-on-scroll">
+
+                    <div class="card bg-dark-custom border-secondary shadow-sm category-card">
+
+                        <!-- IMAGE FIXE -->
+                        <div class="category-image-wrapper">
+                            <img
+                                src="{{ asset('uploads/realisations/' ~ items|first.image) }}"
+                                alt="{{ categorie }}"
+                                class="category-image"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <!-- BODY -->
+                        <div class="card-body text-center category-card-body">
+
+                            <h3 class="text-bronze mb-3">
+                                {{ categorie }}
+                            </h3>
+
+                            <div>
+                                <button
+                                    class="btn btn-primary mt-3 animate-on-scroll"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modal-list-{{ loop.index }}"
+                                >
+                                    Voir les réalisations
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ========================= MODAL LISTE CATÉGORIES ========================= -->
+{% for categorie, items in realisationsParCategorie %}
+
+<div class="modal fade" id="modal-list-{{ loop.index }}" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content bg-dark-custom text-light">
+
+            <div class="modal-header border-secondary">
+                <h2 class="text-bronze">{{ categorie }}</h2>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row g-3">
+
+                    {% for realisation in items %}
+
+                        <div class="col-6 col-md-4">
+
+                            <a href="#"
+                               data-bs-toggle="modal"
+                               data-bs-target="#modal-view-{{ loop.parent.loop.index }}-{{ loop.index }}">
+
+                                <img
+                                    src="{{ asset('uploads/realisations/' ~ realisation.image) }}"
+                                    class="img-fluid rounded shadow-sm"
+                                    alt="{{ realisation.titre }}"
+                                >
+
+                                <div class="text-center mt-2 small">
+                                    {{ realisation.titre }}
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endfor %}
+
+<!-- ========================= MODAL DETAIL ========================= -->
+{% for categorie, items in realisationsParCategorie %}
+
+    {% for realisation in items %}
+
+    <div class="modal fade"
+         id="modal-view-{{ loop.parent.loop.index }}-{{ loop.index }}"
+         tabindex="-1">
+
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+
+            <div class="modal-content bg-dark-custom text-light">
+
+                <div class="modal-header border-secondary">
+                    <h3 class="text-bronze">
+                        {{ realisation.titre }}
+                    </h3>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row align-items-center g-4">
+
+                        <!-- IMAGE -->
+                        <div class="col-md-7 text-center">
+
+                            <img
+                                src="{{ asset('uploads/realisations/' ~ realisation.image) }}"
+                                class="img-fluid rounded shadow"
+                                style="max-height: 500px; object-fit: contain;"
+                                alt="{{ realisation.titre }}"
+                            >
+
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <div class="col-md-5 text-light">
+                            {{ realisation.description|raw }}
+                        </div>
+
+                    </div>
+
+                    <!-- NAVIGATION -->
+                    <div class="d-flex justify-content-between mt-4">
+
+                        {% if not loop.first %}
+                            <button class="btn btn-outline-primary mt-auto align-self-center"
+                                    data-bs-target="#modal-view-{{ loop.parent.loop.index }}-{{ loop.index - 1 }}"
+                                    data-bs-toggle="modal">
+                                ← Précédent
+                            </button>
+                        {% else %}
+                            <span></span>
+                        {% endif %}
+
+                        {% if not loop.last %}
+                            <button class="btn btn-outline-primary mt-auto align-self-center"
+                                    data-bs-target="#modal-view-{{ loop.parent.loop.index }}-{{ loop.index + 1 }}"
+                                    data-bs-toggle="modal">
+                                Suivant →
+                            </button>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% endfor %}
 
 <!-- ========================= CTA ========================= -->
 <section id="cta" class="section-metal py-5 text-light text-center animate-on-scroll">
     <div class="container">
         <h2 class="text-bronze mb-3">Vous avez un projet ?</h2>
-        <p class="fs-5">Contactez-nous pour un devis personnalisé et gratuit.</p>
-        <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3">Contact</a>
+        <p class="fs-5">
+            Contactez-nous pour un devis personnalisé et gratuit.
+        </p>
+        <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3">
+            Contact
+        </a>
     </div>
 </section>
 

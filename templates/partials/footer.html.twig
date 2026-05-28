@@ -1,48 +1,49 @@
-<footer class="footer-metal">
+<footer class="footer-metal" role="contentinfo">
     <div class="container">
 
         <div class="row gy-4">
 
             <!-- Bloc identité / métier -->
-            <div class="col-md-4 footer-block">
-                <h3 class="footer-title">Forge & Dev</h3>
-                <p class="footer-text">
+            <div class="col-md-4 footer-block" itemscope itemtype="https://schema.org/Organization">
+                <h3 class="footer-title" itemprop="name">Forge & Dev</h3>
+                <p class="footer-text" itemprop="description">
                     Métallerie, chaudronnerie et serrurerie artisanale.<br>
-                    Fabrication métallique sur mesure pour particuliers et professionnels.
+                    Fabrication métallique en acier et acier corten sur mesure pour particuliers et professionnels.
                 </p>
+                <meta itemprop="url" content="{{ app.request.schemeAndHttpHost }}">
+                <meta itemprop="logo" content="{{ asset('images/logo.png') }}">
             </div>
 
             <!-- Bloc contact SEO local -->
-            <div class="col-md-4 footer-block">
+            <div class="col-md-4 footer-block" itemscope itemtype="https://schema.org/LocalBusiness">
                 <h3 class="footer-title">Contact</h3>
                 <address class="footer-text">
-                    <strong>Téléphone :</strong>
-                    <a href="tel:+33606838547" class="footer-link">06 06 83 85 47</a><br>
-                    <strong>Email :</strong>
-                    <a href="mailto:contact@forge-and-dev.fr" class="footer-link">contact@forge-and-dev.fr</a><br>
-                    <strong>Zone d’intervention :</strong> Gironde & Nouvelle-Aquitaine
+                    <span itemprop="telephone"><strong>Téléphone :</strong> <a href="tel:+33606838547" class="footer-link">06 06 83 85 47</a></span><br>
+                    <span itemprop="email"><strong>Email :</strong> <a href="mailto:contact@forge-and-dev.fr" class="footer-link">contact@forge-and-dev.fr</a></span><br>
+                    <span itemprop="areaServed"><strong>Zone d’intervention :</strong> France entière</span>
                 </address>
+                <meta itemprop="name" content="Forge & Dev">
             </div>
 
             <!-- Bloc navigation & SEO -->
             <div class="col-md-4 footer-block">
                 <h3 class="footer-title">Informations</h3>
-                <nav class="footer-nav">
+                <nav class="footer-nav" aria-label="Navigation principale du footer">
                     <ul>
-                        <li><a href="{{ path('app_home') }}" class="nav-link">Accueil</a></li>
-                        <li><a href="{{ path('prestation') }}" class="nav-link">Prestations</a></li>
-                        <li><a href="{{ path('realisation') }}" class="nav-link">Réalisations</a></li>
-                        <li><a href="{{ path('a_propos') }}" class="nav-link">À propos</a></li>
-                        <li><a href="{{ path('tarifs') }}" class="nav-link">Tarifs</a></li>
-                        <li><a href="{{ path('contact') }}" class="nav-link">Contact</a></li>
+                        <li><a href="{{ path('app_home') }}" class="nav-link" title="Accueil - Forge & Dev">Accueil</a></li>
+                        <li><a href="{{ path('prestation') }}" class="nav-link" title="Prestations sur mesure">Prestations</a></li>
+                        <li><a href="{{ path('realisation') }}" class="nav-link" title="Nos réalisations artisanales">Réalisations</a></li>
+                        <li><a href="{{ path('a_propos') }}" class="nav-link" title="À propos de Forge & Dev">À propos</a></li>
+                        <li><a href="{{ path('tarifs') }}" class="nav-link" title="Nos tarifs et devis sur mesure">Tarifs</a></li>
+                        <li><a href="{{ path('contact') }}" class="nav-link" title="Contactez Forge & Dev">Contact</a></li>
                     </ul>
                 </nav>
 
                 <h3 class="footer-title mt-3">Légal / Confidentialité</h3>
-                <nav class="footer-nav">
+                <nav class="footer-nav" aria-label="Mentions légales et politique de confidentialité">
                     <ul>
-                        <li><a href="{{ path('mentions_legales') }}" class="nav-link">Mentions légales</a></li>
-                        <li><a href="{{ path('politique_confidentialite') }}" class="nav-link">Politique de confidentialité</a></li>
+                        <li><a href="{{ path('mentions_legales') }}" class="nav-link" title="Mentions légales du site">Mentions légales</a></li>
+                        <li><a href="{{ path('politique_confidentialite') }}" class="nav-link" title="Politique de confidentialité">Politique de confidentialité</a></li>
                     </ul>
                 </nav>
             </div>
@@ -56,14 +57,17 @@
             </p>
 
             <div class="footer-social">
-                <a href="#" aria-label="Facebook Forge & Dev" class="footer-link">
-                    <i class="bi bi-facebook"></i>
+                <a href="https://linkedin.com/in/celdric-seux-forge-and-dev" target='_blank' rel="noopener noreferrer" 
+                   aria-label="LinkedIn Forge & Dev" class="footer-link">
+                    <i class="bi bi-linkedin" aria-hidden="true"></i>
                 </a>
-                <a href="#" aria-label="Instagram Forge & Dev" class="footer-link">
-                    <i class="bi bi-instagram"></i>
+                <a href="https://facebook.com/forgeanddev" target='_blank' rel="noopener noreferrer"
+                   aria-label="Facebook Forge & Dev" class="footer-link">
+                    <i class="bi bi-facebook" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
 
     </div>
+
 </footer>

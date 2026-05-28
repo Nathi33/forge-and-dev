@@ -25,3 +25,7 @@ admin_change_email:
 admin_confirm_email:
     path: /admin/confirm-email/{token}
     controller: App\Controller\Admin\DashboardController::confirmEmail
+
+sitemap:
+    path: /sitemap.xml
+    controller: App\Controller\SitemapController::index

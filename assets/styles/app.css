@@ -146,13 +146,21 @@ a:hover {
 }
 
 .btn-outline-primary {
-    color: var(--bronze);
-    border-color: var(--bronze);
-}
+    --bs-btn-color: var(--bronze);
+    --bs-btn-border-color: var(--bronze);
 
-.btn-outline-primary:hover {
-    background-color: var(--bronze);
-    color: #121212;
+    --bs-btn-hover-color: #121212;
+    --bs-btn-hover-bg: var(--bronze);
+    --bs-btn-hover-border-color: var(--bronze);
+
+    --bs-btn-focus-shadow-rgb: 196, 138, 58;
+
+    --bs-btn-active-color: #121212;
+    --bs-btn-active-bg: var(--bronze);
+    --bs-btn-active-border-color: var(--bronze);
+
+    --bs-btn-disabled-color: var(--bronze);
+    --bs-btn-disabled-border-color: var(--bronze);
 }
 
 /* =====================================================
@@ -247,7 +255,7 @@ img.rounded {
     width: 100%;
     height: 380px;
     object-fit: cover;
-    object-position: center;
+    /*object-position: center;*/
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     filter: contrast(1.05) brightness(0.95);
     cursor: pointer;
@@ -378,6 +386,79 @@ img.rounded {
     color: var(--text-muted);
 }
 
+.modal-dialog {
+    max-width: 900px;
+}
+
+.modal-content {
+    border-radius: 12px;
+}
+
+.carousel img {
+    max-height: 500px;
+    object-fit: contain;
+}
+
+/* =====================================================
+   CARTES CATEGORIES
+===================================================== */
+
+.category-card {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.category-image-wrapper {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+}
+
+.category-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.category-image-wrapper img {
+    transform: scale(1.08);
+}
+
+.category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    flex-grow: 1 !important;
+    padding: 1.5rem;
+}
+
+.category-card-body h3 {
+    min-height: 60px !important;
+    margin-bottom: 1.5rem !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center;
+}
+
+.category-card-body .btn {
+    margin-top: auto !important;
+    width: 100%;
+}
 
 /* =====================================================
    FORMULAIRE DE CONTACT

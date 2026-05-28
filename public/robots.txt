@@ -1,0 +1,13 @@
+# robots.txt pour Forge & Dev
+# Indique aux moteurs de recherche quelles pages crawler ou ignorer
+
+User-agent: *
+# Autorise tout le site sauf l'admin et les pages sensibles
+Disallow: /admin/
+Disallow: /login
+Disallow: /logout
+Disallow: /reset-password/
+Disallow: /forgot-password/
+
+# Sitemap
+Sitemap: https://www.forge-dev.fr/sitemap.xml

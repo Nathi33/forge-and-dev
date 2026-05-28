@@ -2,6 +2,10 @@
 
 {% block title %}Tarifs - Forge & Dev{% endblock %}
 
+{% block meta_description %}
+Découvrez les tarifs sur mesure de Forge & Dev : escaliers métalliques, garde-corps, portails, braseros, mobilier et serrurerie artisanale en acier et acier corten. Devis personnalisé et gratuit.
+{% endblock %}
+
 {% block body %}
 
 <!-- ========================= HERO ========================= -->
@@ -29,7 +33,7 @@
             <div class="col-md-4 animate-on-scroll">
                 <div class="card h-100 text-center">
                     <div class="card-body">
-                        <h5 class="card-title text-bronze">Escaliers métalliques</h5>
+                        <h3 class="card-title text-bronze">Escaliers métalliques</h3>
                         <p class="card-text">Conception et fabrication sur mesure.</p>
                     </div>
                 </div>
@@ -38,7 +42,7 @@
             <div class="col-md-4 animate-on-scroll">
                 <div class="card h-100 text-center">
                     <div class="card-body">
-                        <h5 class="card-title text-bronze">Garde-corps et rampes</h5>
+                        <h3 class="card-title text-bronze">Garde-corps et rampes</h3>
                         <p class="card-text">Fabrication adaptée à chaque espace et style.</p>
                     </div>
                 </div>
@@ -47,7 +51,7 @@
             <div class="col-md-4 animate-on-scroll">
                 <div class="card h-100 text-center">
                     <div class="card-body">
-                        <h5 class="card-title text-bronze">Portails & portillons</h5>
+                        <h3 class="card-title text-bronze">Portails & portillons</h3>
                         <p class="card-text">Sur mesure pour votre sécurité et votre design.</p>
                     </div>
                 </div>
@@ -56,7 +60,7 @@
             <div class="col-md-4 animate-on-scroll">
                 <div class="card h-100 text-center">
                     <div class="card-body">
-                        <h5 class="card-title text-bronze">Mobilier métallique</h5>
+                        <h3 class="card-title text-bronze">Mobilier métallique</h3>
                         <p class="card-text">Tables, décorations et mobilier personnalisés.</p>
                     </div>
                 </div>
@@ -65,7 +69,18 @@
             <div class="col-md-4 animate-on-scroll">
                 <div class="card h-100 text-center">
                     <div class="card-body">
-                        <h5 class="card-title text-bronze">Serrurerie sur mesure</h5>
+                        <h3 class="card-title text-bronze">Braseros sur mesure</h3>
+                        <p class="card-text">
+                            Fabrication artisanale de braseros métalliques personnalisés pour vos espaces extérieurs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 animate-on-scroll">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h3 class="card-title text-bronze">Serrurerie sur mesure</h3>
                         <p class="card-text">Assemblage précis et durable selon vos besoins.</p>
                     </div>
                 </div>
@@ -83,5 +98,23 @@
         <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3">Contact</a>
     </div>
 </section>
+
+<!-- ========================= JSON-LD LocalBusiness ========================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Forge & Dev",
+  "description": "Prestations artisanales sur mesure : escaliers métalliques, garde-corps, portails, braseros, mobilier et serrurerie. Devis personnalisé et gratuit.",
+  "url": "{{ app.request.uri }}",
+  "areaServed": "France",
+  "priceRange": "Devis personnalisé",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "{{ path('contact') }}"
+  }
+}
+</script>
 
 {% endblock %}

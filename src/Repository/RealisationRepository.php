@@ -19,7 +19,9 @@ class RealisationRepository extends ServiceEntityRepository
     public function findAllOrdered(): array
     {
         return $this->createQueryBuilder('r')
-            ->orderBy('r.position', 'ASC')
+            ->orderBy('r.categorie', 'ASC')
+            ->addOrderBy('r.position', 'ASC')
+            ->addOrderBy('r.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }

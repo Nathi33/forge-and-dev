@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="{% block meta_description %}Forge & Dev – Métallerie, chaudronnerie et serrurerie sur mesure, en acier et acier corten, partout en France{% endblock %}">
+    
     <title>{% block title %}Forge & Dev{% endblock %}</title>
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+
+    <meta property="og:title" content="{% block og_title %}Forge & Dev{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Forge & Dev – Métallerie, chaudronnerie et serrurerie sur mesure en acier et acier corten{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="{{ asset('og-image.png') }}">
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -22,5 +32,32 @@
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
+
+    {# ========================= JSON-LD ========================= #}
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Forge & Dev",
+    "image": "{{ asset('images/logo.png') }}",
+    "url": "{{ app.request.schemeAndHttpHost }}",
+    "telephone": "+33606838547",
+    "email": "contact@forge-and-dev.fr",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6, impasse de Moselle",
+        "addressLocality": "Mérignac",
+        "postalCode": "33700",
+        "addressCountry": "FR"
+    },
+    "areaServed": "France",
+    "priceRange": "€€",
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "sameAs": [
+        "https://www.linkedin.com/in/celdric-seux-forge-and-dev",
+        "https://www.facebook.com/forgeanddev"
+    ]
+    }
+    </script>
 </body>
 </html>

@@ -2,6 +2,10 @@
 
 {% block title %}Politique de confidentialité - Forge & Dev{% endblock %}
 
+{% block meta_description %}
+Politique de confidentialité du site Forge & Dev : collecte, utilisation et sécurité de vos données personnelles conformément au RGPD.
+{% endblock %}
+
 {% block body %}
 
 <!-- ========================= HERO ========================= -->
@@ -55,5 +59,16 @@
 
     </div>
 </section>
+
+<!-- ========================= JSON-LD WebPage ========================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Politique de confidentialité - Forge & Dev",
+  "description": "Politique de confidentialité du site Forge & Dev : comment nous collectons, utilisons et protégeons vos données personnelles.",
+  "url": "{{ app.request.uri }}"
+}
+</script>
 
 {% endblock %}

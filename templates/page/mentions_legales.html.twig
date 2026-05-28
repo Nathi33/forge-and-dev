@@ -2,6 +2,10 @@
 
 {% block title %}Mentions légales - Forge & Dev{% endblock %}
 
+{% block meta_description %}
+Mentions légales du site Forge & Dev : informations sur l’éditeur, l’hébergeur, la propriété intellectuelle et la protection des données personnelles.
+{% endblock %}
+
 {% block body %}
 
 <!-- ========================= HERO ========================= -->
@@ -58,5 +62,16 @@
 
     </div>
 </section>
+
+<!-- ========================= JSON-LD WebPage ========================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mentions légales - Forge & Dev",
+  "description": "Informations légales concernant le site Forge & Dev, incluant l’éditeur, l’hébergeur, la propriété intellectuelle et les données personnelles.",
+  "url": "{{ app.request.uri }}"
+}
+</script>
 
 {% endblock %}

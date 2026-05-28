@@ -1,40 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom py-3 fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom py-3 fixed-top" role="navigation" aria-label="Menu principal">
   <div class="container">
-    <a class="navbar-brand text-bronze fw-bold" href="{{ path('app_home') }}">
+    <a class="navbar-brand text-bronze fw-bold" href="{{ path('app_home') }}" title="Accueil - Forge & Dev">
       <img src="{{ asset('images/logo.png') }}" alt="Logo Forge & Dev" height="40">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Afficher le menu">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" href="{{ path('app_home') }}">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" 
+             href="{{ path('app_home') }}" title="Retour à l’accueil de Forge & Dev">
             Accueil
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if app.request.attributes.get('_route') == 'prestation' %}active{% endif %}" href="{{ path('prestation') }}">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'prestation' %}active{% endif %}" 
+             href="{{ path('prestation') }}" title="Découvrez nos prestations sur mesure en métallurgie">
             Prestations
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if app.request.attributes.get('_route') == 'realisation' %}active{% endif %}" href="{{ path('realisation') }}">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'realisation' %}active{% endif %}" 
+             href="{{ path('realisation') }}" title="Parcourez nos réalisations artisanales">
             Réalisations
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if app.request.attributes.get('_route') == 'a_propos' %}active{% endif %}" href="{{ path('a_propos') }}">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'a_propos' %}active{% endif %}" 
+             href="{{ path('a_propos') }}" title="En savoir plus sur Forge & Dev">
             À propos
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if app.request.attributes.get('_route') == 'tarifs' %}active{% endif %}" href="{{ path('tarifs') }}">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'tarifs' %}active{% endif %}" 
+             href="{{ path('tarifs') }}" title="Consultez nos tarifs et devis sur mesure">
             Tarifs
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if app.request.attributes.get('_route') == 'contact' %}active{% endif %}" href="{{ path('contact') }}">
+          <a class="nav-link {% if app.request.attributes.get('_route') == 'contact' %}active{% endif %}" 
+             href="{{ path('contact') }}" title="Contactez Forge & Dev pour votre projet">
             Contact
           </a>
         </li>

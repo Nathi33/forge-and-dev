@@ -13,9 +13,17 @@ final class RealisationController extends AbstractController
     public function index(RealisationRepository $realisationRepository): Response
     {
         $realisations = $realisationRepository->findAllOrdered();
-        
+
+        $realisationsParCategorie = [];
+
+        foreach ($realisations as $realisation) {
+            $categorie = $realisation->getCategorie();
+
+            $realisationsParCategorie[$categorie][] = $realisation;
+        }
+
         return $this->render('realisation/index.html.twig', [
-            'realisations' => $realisations,
+            'realisationsParCategorie' => $realisationsParCategorie,
         ]);
     }
 }

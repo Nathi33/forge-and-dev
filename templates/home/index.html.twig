@@ -2,12 +2,16 @@
 
 {% block title %}Accueil - Forge & Dev{% endblock %}
 
+{% block meta_description %}
+    Forge & Dev – Métallerie, chaudronnerie et serrurerie artisanale sur mesure, fabrication et création métallique en acier et acier corten partout en France.
+{% endblock %}
+
 {% block body %}
 
 <!-- ========================= HERO ========================= -->
 <section id="hero" class="section-metal hero bg-dark-custom text-light py-5">
     <div class="container text-center">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo Forge & Dev" class="mb-3 hero-logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo Forge & Dev" loading="lazy" class="mb-3 hero-logo">
         <h1 class="display-4 text-bronze fw-bold mb-3 hero-title">
             Métallerie, chaudronnerie, serrurerie sur mesure
         </h1>
@@ -23,34 +27,40 @@
 <!-- ========================= ACTUALITÉS ========================= -->
 <section id="actualites" class="section-metal py-5 text-light">
     <div class="container">
-        <h2 class="mb-4 text-center text-bronze animate-on-scroll">Actualités</h2>
+        <!-- Titre -->
+        <h2 class="mb-3 text-center text-bronze">Actualités</h2>
 
         {% if actualites|length > 0 %}
-            <div id="carouselActualites" class="carousel slide animate-on-scroll" data-bs-ride="carousel">
+            <div id="carouselActualites" class="carousel slide" data-bs-ride="carousel">
+                
+                <!-- Slides -->
                 <div class="carousel-inner">
-
                     {% for actualite in actualites %}
-                        <div class="carousel-item {% if loop.first %}active{% endif %}">
-                            <div class="text-center fs-5 animate-on-scroll">
-                                {{ actualite.contenu }}
+                        <div class="carousel-item {% if loop.first %}active{% endif %} mb-5">
+                            <div class="text-center fs-5 py-4">
+                                {{ actualite.contenu|raw }}
                             </div>
                         </div>
                     {% endfor %}
-
                 </div>
 
                 {% if actualites|length > 1 %}
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselActualites" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselActualites" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
+                    <!-- Indicateurs -->
+                    <div class="carousel-indicators mt-5">
+                        {% for actualite in actualites %}
+                            <button type="button"
+                                    data-bs-target="#carouselActualites"
+                                    data-bs-slide-to="{{ loop.index0 }}"
+                                    {% if loop.first %}class="active"{% endif %}
+                                    aria-current="{% if loop.first %}true{% endif %}"
+                                    aria-label="Actualité {{ loop.index }}">
+                            </button>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             </div>
         {% else %}
-            <p class="text-center fs-5 animate-on-scroll">
+            <p class="text-center fs-5">
                 Aucune actualité pour le moment.
             </p>
         {% endif %}
@@ -60,25 +70,25 @@
 <!-- ========================= PRESTATIONS ========================= -->
 <section id="prestations" class="section-metal py-5 text-light">
     <div class="container">
-        <h2 class="mb-5 text-center text-bronze animate-on-scroll">Nos prestations</h2>
+        <h2 class="mb-5 text-center text-bronze">Nos prestations</h2>
 
         <div class="row g-4">
             {% for prestation in ['Métallerie', 'Chaudronnerie', 'Serrurerie'] %}
-                <div class="col-md-4 animate-on-scroll">
-                    <div class="card h-100 text-center">
-                        <i class="bi {% if prestation == 'Métallerie' %}bi-tools{% elseif prestation == 'Chaudronnerie' %}bi-hammer{% else %}bi-lock{% endif %} text-bronze fs-1 mb-2 animate-on-scroll"></i>
-                        <div class="card-body animate-on-scroll">
-                            <h5 class="card-title text-bronze animate-on-scroll">{{ prestation }}</h5>
-                            <p class="card-text animate-on-scroll">
+                <div class="col-md-4">
+                    <div class="card h-100 d-flex flex-column text-center">
+                        <i class="bi {% if prestation == 'Métallerie' %}bi-tools{% elseif prestation == 'Chaudronnerie' %}bi-hammer{% else %}bi-lock{% endif %} text-bronze fs-1 mb-2" aria-hidden="true"></i>
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title text-bronze">{{ prestation }}</h3>
+                            <p class="card-text">
                                 {% if prestation == 'Métallerie' %}
-                                    Travail du métal sur mesure pour tous vos projets.
+                                    Conception et fabrication d'ouvrages métalliques sur mesure, adaptés à vos besoins et à votre style.
                                 {% elseif prestation == 'Chaudronnerie' %}
-                                    Fabrication et réparation d’éléments métalliques complexes.
+                                    Réalisation de pièces techniques et structures métalliques complexes, garantissant robustesse et précision.
                                 {% else %}
-                                    Assemblage précis et durable de tous types de métaux.
+                                    Installation de systèmes de fermeture et de sécurité performants pour protéger vos biens.
                                 {% endif %}
                             </p>
-                            <a href="{{ path('prestation') }}" class="btn btn-outline-primary animate-on-scroll">Voir plus</a>
+                            <a href="{{ path('prestation', {'slug': prestation|lower}) }}" class="btn btn-outline-primary mt-auto align-self-center">Voir plus</a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +102,7 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-md-6 animate-on-scroll">
-                <img src="{{ asset('images/savoir-faire.webp') }}" class="img-fluid rounded shadow-lg" alt="Soudure avec étincelle">
+                <img src="{{ asset('images/savoir-faire.webp') }}" class="img-fluid rounded shadow-lg" alt="Soudure avec étincelle" loading="lazy">
             </div>
             <div class="col-md-6 animate-on-scroll">
                 <h2 class="text-bronze mb-3 animate-on-scroll">Notre savoir-faire</h2>
@@ -118,6 +128,7 @@
                         <img 
                             src="{{ asset('uploads/realisations/' ~ real.image) }}" 
                             class="realisation-img animate-on-scroll" 
+                            style="object-position: {{ real.objectPosition ?? 'center center' }};"
                             alt="{{ real.titre }}"
                         >
                     </a>
@@ -135,5 +146,23 @@
         <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3 animate-on-scroll">Contact</a>
     </div>
 </section>
+
+{# ========================= JSON-LD LocalBusiness ========================= #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Forge & Dev",
+  "image": "{{ asset('images/logo.png') }}",
+  "description": "Métallerie, chaudronnerie et serrurerie artisanale sur mesure. Fabrication et création métallique partout en France.",
+  "address": {
+    "@type": "33700",
+    "addressLocality": "Mérignac",
+    "addressCountry": "France"
+  },
+  "url": "{{ app.request.uri }}",
+  "telephone": "0606838547"
+}
+</script>
 
 {% endblock %}

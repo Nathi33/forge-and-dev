@@ -5,7 +5,7 @@
 {% block body %}
 <section class="section-metal hero bg-dark-custom text-light py-5">
     <div class="container">
-        <h1 class="mb-5 text-bronze">Connexion</h1>
+        <h1 class="mb-5 text-bronze text-center">Connexion</h1>
 
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

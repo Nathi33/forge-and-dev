@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\RealisationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: RealisationRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Realisation
 {
     #[ORM\Id]
@@ -29,11 +31,27 @@ class Realisation
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $objectPosition = 'center center';
+
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $categorie = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function updateSlug(): void
+    {
+        if (!$this->slug && $this->titre) {
+            $slugger = new AsciiSlugger();
+            $this->slug = $slugger->slug($this->titre)->lower() . '-' . uniqid(); // transforme "Mon Titre" -> "mon-titre"
+        }
+    }
 
     public function getPosition(): ?int
     {
@@ -47,7 +65,7 @@ class Realisation
         return $this;
     }
 
-    public function isHomePAge(): ?bool
+    public function isHomePage(): ?bool
     {
         return $this->homePage;
     }
@@ -100,6 +118,18 @@ class Realisation
         return $this;
     }
 
+    public function getObjectPosition(): ?string
+    {
+        return $this->objectPosition;
+    }
+
+    public function setObjectPosition(?string $objectPosition): static
+    {
+        $this->objectPosition = $objectPosition;
+
+        return $this;
+    }
+
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -120,6 +150,18 @@ class Realisation
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $categorie): static
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

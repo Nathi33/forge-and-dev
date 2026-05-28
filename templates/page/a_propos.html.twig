@@ -2,6 +2,10 @@
 
 {% block title %}À propos - Forge & Dev{% endblock %}
 
+{% block meta_description %}
+Découvrez Forge & Dev : artisan métallier, chaudronnier et serrurier depuis plus de 20 ans, passionné par le travail sur mesure, la qualité et la sécurité.
+{% endblock %}
+
 {% block body %}
 
 <!-- ========================= HERO ========================= -->
@@ -17,7 +21,7 @@
 <!-- ========================= NOTRE HISTOIRE ========================= -->
 <section id="notre-histoire" class="section-metal py-5 text-light">
     <div class="container">
-        <h2 class="mb-4 text-bronze animate-on-scroll">Notre histoire</h2>
+        <h2 class="mb-4 text-bronze animate-on-scroll text-center">Notre histoire</h2>
         <p class="animate-on-scroll">
             Depuis la création de Forge & Dev, nous nous engageons à réaliser un travail artisanal de qualité, alliant techniques traditionnelles et solutions modernes.
             Chaque projet est exécuté avec soin, précision et passion.
@@ -35,26 +39,26 @@
         <div class="row text-center g-4">
 
             <div class="col-md-3 animate-on-scroll">
-                <i class="bi bi-award fs-1 text-bronze mb-2"></i>
-                <h5>Qualité</h5>
+                <i class="bi bi-award fs-1 text-bronze mb-2" aria-hidden="true"></i>
+                <h3 class="text-bronze">Qualité</h3>
                 <p>Un travail soigné, durable et précis pour chaque projet.</p>
             </div>
 
             <div class="col-md-3 animate-on-scroll">
-                <i class="bi bi-lightning fs-1 text-bronze mb-2"></i>
-                <h5>Innovation</h5>
+                <i class="bi bi-lightning fs-1 text-bronze mb-2" aria-hidden="true"></i>
+                <h3 class="text-bronze">Innovation</h3>
                 <p>Allier techniques artisanales et solutions modernes.</p>
             </div>
 
             <div class="col-md-3 animate-on-scroll">
-                <i class="bi bi-shield-lock fs-1 text-bronze mb-2"></i>
-                <h5>Sécurité</h5>
+                <i class="bi bi-shield-lock fs-1 text-bronze mb-2" aria-hidden="true"></i>
+                <h3 class="text-bronze">Sécurité</h3>
                 <p>Respect strict des normes et sécurité de chaque réalisation.</p>
             </div>
 
             <div class="col-md-3 animate-on-scroll">
-                <i class="bi bi-heart fs-1 text-bronze mb-2"></i>
-                <h5>Passion</h5>
+                <i class="bi bi-heart fs-1 text-bronze mb-2" aria-hidden="true"></i>
+                <h3 class="text-bronze">Passion</h3>
                 <p>Un artisan motivé par la précision et l’excellence.</p>
             </div>
 
@@ -70,5 +74,16 @@
         <a href="{{ path('contact') }}" class="btn btn-primary btn-lg mt-3">Contact</a>
     </div>
 </section>
+
+{# ========================= JSON-LD ========================= #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "À propos - Forge & Dev",
+  "description": "Artisan métallier, chaudronnier et serrurier depuis plus de 20 ans, Forge & Dev réalise des projets sur mesure avec passion, précision et sécurité.",
+  "url": "{{ app.request.uri }}"
+}
+</script>
 
 {% endblock %}
